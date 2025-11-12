@@ -30,3 +30,42 @@
 * Собранная информация систематизирована, имеет прямое отношение к тестируемому сервису, имеет ценность для тестирвоания.
 * Полученная информация оценена и проанализирована.
 </details>
+
+На первом этапе использовали сервисы:
+* www.shodan.io
+* www.criminalip.io
+* www.cvedetails.com
+* google.com
+
+Результаты сбора информации:
+
+### Shodan.io:
+
+GeneralInformation  
+
+| Параметр | Значение |
+|:-----------|:----------|
+| Hostnames | 1427771-cg36175.tw1.ru |
+| Domains | tw1.ru |
+| Country | Russian Federation |
+| City | Saint Petersburg |
+| Organization | TimeWeb Ltd. |
+| ISP | TimeWeb Ltd. |
+| ASN | AS9123 |
+| Operating System | Linux |
+
+WebTechnologies  
+
+| Параметр | Значение |
+|:-----------|:----------|
+| Operating systems | Ubuntu |
+| Programming languages | PHP 5.5.9 |
+| Web servers | Apache HTTP Server 2.4.7 |
+
+OpenPorts
+
+| Параметр | Значение |
+|:-----------|:----------|
+| 22 | OpenSSH8.2p1 Ubuntu 4ubuntu0.13 |
+| 8050 | tcp Apache/2.4.7 (Ubuntu) |
+| 10050 | |
