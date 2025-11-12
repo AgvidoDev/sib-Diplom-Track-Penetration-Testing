@@ -82,8 +82,8 @@ Vulnerabilities
 | Low | 7 |
 
 
-[Выявленные уязвимости](shodan.md)
-[Скриншоты](shodanscreen.md)
+[Выявленные уязвимости](./docs/shodan.md)  
+[Скриншоты](./docs/shodanscreen.md)
 
 
 
