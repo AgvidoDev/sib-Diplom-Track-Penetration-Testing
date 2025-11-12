@@ -135,5 +135,6 @@ Security
 | Admin Page | False |
 | Invalid SSL | False |
 
+[Скриншоты](./docs/criminalip.md)
 
 
