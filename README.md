@@ -35,7 +35,7 @@
 * www.shodan.io
 * www.criminalip.io
 * www.cvedetails.com
-* google.com
+* www.google.com
 
 Результаты сбора информации:
 
@@ -62,10 +62,78 @@ WebTechnologies
 | Programming languages | PHP 5.5.9 |
 | Web servers | Apache HTTP Server 2.4.7 |
 
-OpenPorts
+OpenPorts  
 
 | Параметр | Значение |
 |:-----------|:----------|
-| 22 | OpenSSH8.2p1 Ubuntu 4ubuntu0.13 |
-| 8050 | tcp Apache/2.4.7 (Ubuntu) |
+| 22 | OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 |
+| 8050 | Apache/2.4.7 (Ubuntu) NetologyVulnApp.com |
 | 10050 | |
+
+Так же найдено множество уязвимостей на порту 8050
+
+Vulnerabilities  
+
+| Параметр | Значение |
+|:-----------|:----------|
+| Critical | 93 |
+| High | 134 |
+| Medium | 100 |
+| Low | 7 |
+
+
+[Выявленные уязвимости](shodan.md)
+[Скриншоты](shodanscreen.md)
+
+
+
+### criminalip.io
+
+Сервис сразу предупреждает:
+* This is a malicious IP Address.
+* This IP Address has critical vulnerabilities.
+
+Connection  
+
+| Параметр | Значение |
+|:-----------|:----------|
+| IP Address Owner | Jsc timeweb |
+| Hostname | 1427771-cg36175.tw1.ru |
+| Country | Russian Federation |
+
+Current Open Ports  
+
+| Параметр | Значение |
+|:-----------|:----------|
+| TCP 22 | OpenSSH 8.2p1 |
+| TCP 8050 | Apache 2.4.7 NetologyVulnApp.com |
+
+WHOIS  
+
+| Параметр | Значение |
+|:-----------|:----------|
+| ASN | 9123 |
+| AS Name | Jsc timeweb |
+| Organization Name | TIMEWEB |
+| Country Code | RU |
+| Country | Russian Federation |
+| Region | St.-Petersburg |
+| City | St Petersburg |
+| Postal Code | 195213 |
+
+Security  
+
+| Параметр | Значение |
+|:-----------|:----------|
+| Abuse Record | 0 |
+| Open Ports | 2 |
+| Vulnerabilities | 68 | 
+| Exploit DB| 6 | 
+| Policy Violation | 1 |
+| Remote Address | True |
+| Network Device | 0 |
+| Admin Page | False |
+| Invalid SSL | False |
+
+
+
