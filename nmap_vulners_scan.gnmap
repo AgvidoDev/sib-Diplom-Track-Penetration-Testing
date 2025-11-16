@@ -1,0 +1,4 @@
+# Nmap 7.93 scan initiated Sun Nov 16 11:13:53 2025 as: nmap -sV -p 22,7788,8050,10050 --script vulners -oA nmap_vulners_scan 92.51.39.106
+Host: 92.51.39.106 (1427771-cg36175.tw1.ru)	Status: Up
+Host: 92.51.39.106 (1427771-cg36175.tw1.ru)	Ports: 22/open/tcp//ssh//OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)/, 7788/open/tcp//http//Tornado httpd 5.1.1/, 8050/open/tcp//unknown///, 10050/open/tcp//zabbix-agent?///
+# Nmap done at Sun Nov 16 11:16:41 2025 -- 1 IP address (1 host up) scanned in 168.04 seconds

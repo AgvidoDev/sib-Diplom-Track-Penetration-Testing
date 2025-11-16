@@ -392,6 +392,10 @@ https://www.cvedetails.com/vulnerability-list/vendor_id-97/product_id-585/versio
 включая RCE через ssh-agent и инъекции команд в scp. Рекомендуется 
 немедленное обновление до актуальной версии OpenSSH.
 
+
+______________________________________________________________________________________
+
+
 #### Сводный анализ безопасности инфраструктуры
 
 ** Сравнительный анализ уязвимостей**
@@ -416,4 +420,157 @@ https://www.cvedetails.com/vulnerability-list/vendor_id-97/product_id-585/versio
 - **PHP** - 92 уязвимости высокого уровня риска
 - **Apache** - 25 высокорисковых уязвимостей
 - **Tornado** - 2 уязвимости DoS типа
+
+Исходя из результатов OSINT определяемся с целями:
+
+- http://92.51.39.106:8050/ (NetologyVulnApp.com, Apache/2.4.7, PHP/5.5.9)
+- http://92.51.39.106:7788/ (Beemer, TornadoServer/5.1.1)
+
+
+
+## Этап 2. Scanning
+Цель: Активное сканирование для обнаружения открытых портов, сервисов и автоматического выявления известных уязвимостей.
+
+### Шаг 2.1. Сканирование портов и сервисов с помощью Nmap
+
+#### Базовое сканирование
+
+```
+nmap -sV -sC -p 22,7788,8050,10050 -oA nmap_basic_scan 92.51.39.106
+```
+
+Результаты:
+```
+PORT      STATE SERVICE       VERSION
+22/tcp    open  ssh           OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   3072 35818ada5019aa65c195ad2fdba9eaed (RSA)
+|   256 7bc83edcd6707737bea5726d205bee8f (ECDSA)
+|_  256 31f56db5346a96fd975c5e4e2c64fc4f (ED25519)
+7788/tcp  open  http          Tornado httpd 5.1.1
+8050/tcp  open  unknown
+10050/tcp open  zabbix-agent?
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+```
+
+<details>
+<summary> Скриншот </summary>
+
+![Изображение](./img/slide2_nmap_1.PNG)
+</details>
+
+#### Полное сканирование всех TCP-портов
+
+```
+nmap -sS -p- -oA nmap_full_tcp_scan 92.51.39.106
+```
+
+Результаты:
+
+```
+Nmap scan report for 1427771-cg36175.tw1.ru (92.51.39.106)
+Host is up (0.071s latency).
+Not shown: 65527 closed tcp ports (reset)
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+135/tcp   filtered msrpc
+138/tcp   filtered netbios-dgm
+139/tcp   filtered netbios-ssn
+445/tcp   filtered microsoft-ds
+7788/tcp  open     unknown
+8050/tcp  open     unknown
+10050/tcp open     zabbix-agent
+```
+
+<details>
+<summary> Скриншот </summary>
+
+![Изображение](./img/slide2_nmap_2.PNG)
+</details>
+
+
+
+#### Сканирование с использованием скрипта для поиска уязвимостей
+
+```
+nmap -sV -p 22,7788,8050,10050 --script vulners -oA nmap_vulners_scan 92.51.39.106
+```
+
+Результаты:
+
+<details>
+<summary> Развернуть </summary>
+
+PORT      STATE SERVICE       VERSION
+22/tcp    open  ssh           OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| vulners:
+|   cpe:/a:openbsd:openssh:8.2p1:
+|       PACKETSTORM:173661      9.8     https://vulners.com/packetstorm/PACKETSTORM:173661      *EXPLOIT*
+|       F0979183-AE88-53B4-86CF-3AF0523F3807    9.8     https://vulners.com/githubexploit/F0979183-AE88-53B4-86CF-3AF0523F3807    *EXPLOIT*
+|       CVE-2023-38408  9.8     https://vulners.com/cve/CVE-2023-38408
+|       B8190CDB-3EB9-5631-9828-8064A1575B23    9.8     https://vulners.com/githubexploit/B8190CDB-3EB9-5631-9828-8064A1575B23    *EXPLOIT*
+|       8FC9C5AB-3968-5F3C-825E-E8DB5379A623    9.8     https://vulners.com/githubexploit/8FC9C5AB-3968-5F3C-825E-E8DB5379A623    *EXPLOIT*
+|       8AD01159-548E-546E-AA87-2DE89F3927EC    9.8     https://vulners.com/githubexploit/8AD01159-548E-546E-AA87-2DE89F3927EC    *EXPLOIT*
+|       2227729D-6700-5C8F-8930-1EEAFD4B9FF0    9.8     https://vulners.com/githubexploit/2227729D-6700-5C8F-8930-1EEAFD4B9FF0    *EXPLOIT*
+|       0221525F-07F5-5790-912D-F4B9E2D1B587    9.8     https://vulners.com/githubexploit/0221525F-07F5-5790-912D-F4B9E2D1B587    *EXPLOIT*
+|       BA3887BD-F579-53B1-A4A4-FF49E953E1C0    8.1     https://vulners.com/githubexploit/BA3887BD-F579-53B1-A4A4-FF49E953E1C0    *EXPLOIT*
+|       4FB01B00-F993-5CAF-BD57-D7E290D10C1F    8.1     https://vulners.com/githubexploit/4FB01B00-F993-5CAF-BD57-D7E290D10C1F    *EXPLOIT*
+|       CVE-2020-15778  7.8     https://vulners.com/cve/CVE-2020-15778
+|       C94132FD-1FA5-5342-B6EE-0DAF45EEFFE3    7.8     https://vulners.com/githubexploit/C94132FD-1FA5-5342-B6EE-0DAF45EEFFE3    *EXPLOIT*
+|       2E719186-2FED-58A8-A150-762EFBAAA523    7.8     https://vulners.com/gitee/2E719186-2FED-58A8-A150-762EFBAAA523 *EXPLOIT*
+|       23CC97BE-7C95-513B-9E73-298C48D74432    7.8     https://vulners.com/githubexploit/23CC97BE-7C95-513B-9E73-298C48D74432    *EXPLOIT*
+|       10213DBE-F683-58BB-B6D3-353173626207    7.8     https://vulners.com/githubexploit/10213DBE-F683-58BB-B6D3-353173626207    *EXPLOIT*
+|       SSV:92579       7.5     https://vulners.com/seebug/SSV:92579    *EXPLOIT*
+|       CVE-2020-12062  7.5     https://vulners.com/cve/CVE-2020-12062
+|       CNVD-2020-36277 7.5     https://vulners.com/cnvd/CNVD-2020-36277
+|       1337DAY-ID-26576        7.5     https://vulners.com/zdt/1337DAY-ID-26576        *EXPLOIT*
+|       CVE-2021-28041  7.1     https://vulners.com/cve/CVE-2021-28041
+|       CVE-2021-41617  7.0     https://vulners.com/cve/CVE-2021-41617
+|       284B94FC-FD5D-5C47-90EA-47900DAD1D1E    7.0     https://vulners.com/githubexploit/284B94FC-FD5D-5C47-90EA-47900DAD1D1E    *EXPLOIT*
+|       PACKETSTORM:189283      6.8     https://vulners.com/packetstorm/PACKETSTORM:189283      *EXPLOIT*
+|       CVE-2025-26465  6.8     https://vulners.com/cve/CVE-2025-26465
+|       9D8432B9-49EC-5F45-BB96-329B1F2B2254    6.8     https://vulners.com/githubexploit/9D8432B9-49EC-5F45-BB96-329B1F2B2254    *EXPLOIT*
+|       85FCDCC6-9A03-597E-AB4F-FA4DAC04F8D0    6.8     https://vulners.com/githubexploit/85FCDCC6-9A03-597E-AB4F-FA4DAC04F8D0    *EXPLOIT*
+|       1337DAY-ID-39918        6.8     https://vulners.com/zdt/1337DAY-ID-39918        *EXPLOIT*
+|       D104D2BF-ED22-588B-A9B2-3CCC562FE8C0    6.5     https://vulners.com/githubexploit/D104D2BF-ED22-588B-A9B2-3CCC562FE8C0    *EXPLOIT*
+|       CVE-2023-51385  6.5     https://vulners.com/cve/CVE-2023-51385
+|       C07ADB46-24B8-57B7-B375-9C761F4750A2    6.5     https://vulners.com/githubexploit/C07ADB46-24B8-57B7-B375-9C761F4750A2    *EXPLOIT*
+|       A88CDD3E-67CC-51CC-97FB-AB0CACB6B08C    6.5     https://vulners.com/githubexploit/A88CDD3E-67CC-51CC-97FB-AB0CACB6B08C    *EXPLOIT*
+|       65B15AA1-2A8D-53C1-9499-69EBA3619F1C    6.5     https://vulners.com/githubexploit/65B15AA1-2A8D-53C1-9499-69EBA3619F1C    *EXPLOIT*
+|       5325A9D6-132B-590C-BDEF-0CB105252732    6.5     https://vulners.com/gitee/5325A9D6-132B-590C-BDEF-0CB105252732 *EXPLOIT*
+|       530326CF-6AB3-5643-AA16-73DC8CB44742    6.5     https://vulners.com/githubexploit/530326CF-6AB3-5643-AA16-73DC8CB44742    *EXPLOIT*
+|       CVE-2023-48795  5.9     https://vulners.com/cve/CVE-2023-48795
+|       CVE-2020-14145  5.9     https://vulners.com/cve/CVE-2020-14145
+|       CNVD-2021-25272 5.9     https://vulners.com/cnvd/CNVD-2021-25272
+|       6D74A425-60A7-557A-B469-1DD96A2D8FF8    5.9     https://vulners.com/githubexploit/6D74A425-60A7-557A-B469-1DD96A2D8FF8    *EXPLOIT*
+|       CVE-2016-20012  5.3     https://vulners.com/cve/CVE-2016-20012
+|       CVE-2025-32728  4.3     https://vulners.com/cve/CVE-2025-32728
+|       CVE-2021-36368  3.7     https://vulners.com/cve/CVE-2021-36368
+|       CVE-2025-61985  3.6     https://vulners.com/cve/CVE-2025-61985
+|       CVE-2025-61984  3.6     https://vulners.com/cve/CVE-2025-61984
+|       B7EACB4F-A5CF-5C5A-809F-E03CCE2AB150    3.6     https://vulners.com/githubexploit/B7EACB4F-A5CF-5C5A-809F-E03CCE2AB150    *EXPLOIT*
+|       4C6E2182-0E99-5626-83F6-1646DD648C57    3.6     https://vulners.com/githubexploit/4C6E2182-0E99-5626-83F6-1646DD648C57    *EXPLOIT*
+|_      PACKETSTORM:140261      0.0     https://vulners.com/packetstorm/PACKETSTORM:140261      *EXPLOIT*
+7788/tcp  open  http          Tornado httpd 5.1.1
+|_http-server-header: TornadoServer/5.1.1
+| vulners:
+|   cpe:/a:tornadoweb:tornado:5.1.1:
+|       CVE-2025-47287  7.5     https://vulners.com/cve/CVE-2025-47287
+|       CVE-2024-52804  7.5     https://vulners.com/cve/CVE-2024-52804
+|       VERACODE:40660  6.1     https://vulners.com/veracode/VERACODE:40660
+|_      CVE-2023-28370  6.1     https://vulners.com/cve/CVE-2023-28370
+8050/tcp  open  unknown
+10050/tcp open  zabbix-agent?
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 168.04 seconds
+</details>
+
+<details>
+<summary> Скриншот </summary>
+
+![Изображение](./img/slide2_nmap_3.PNG)
+</details>
+
 
