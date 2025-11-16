@@ -1,0 +1,20 @@
+# Nmap 7.93 scan initiated Thu Nov 13 10:51:44 2025 as: nmap -sV -sC -O -oN scan_nmap.txt 92.51.39.106
+Nmap scan report for 1427771-cg36175.tw1.ru (92.51.39.106)
+Host is up (0.072s latency).
+Not shown: 996 closed tcp ports (reset)
+PORT    STATE    SERVICE      VERSION
+22/tcp  open     ssh          OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 35818ada5019aa65c195ad2fdba9eaed (RSA)
+|   256 7bc83edcd6707737bea5726d205bee8f (ECDSA)
+|_  256 31f56db5346a96fd975c5e4e2c64fc4f (ED25519)
+135/tcp filtered msrpc
+139/tcp filtered netbios-ssn
+445/tcp filtered microsoft-ds
+Aggressive OS guesses: Linux 4.15 - 5.6 (99%), Linux 5.0 - 5.3 (98%), Linux 5.4 (97%), Linux 2.6.32 (96%), Linux 3.2 - 4.9 (96%), Linux 2.6.32 - 3.10 (96%), Linux 5.0 - 5.4 (96%), Linux 5.3 - 5.4 (95%), Linux 3.4 - 3.10 (95%), Linux 3.1 (95%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 12 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Nov 13 10:51:53 2025 -- 1 IP address (1 host up) scanned in 10.14 seconds

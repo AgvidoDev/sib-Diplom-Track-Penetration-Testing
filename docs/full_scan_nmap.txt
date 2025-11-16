@@ -1,0 +1,14 @@
+# Nmap 7.93 scan initiated Thu Nov 13 10:52:28 2025 as: nmap -p- -oN full_scan_nmap.txt 92.51.39.106
+Nmap scan report for 1427771-cg36175.tw1.ru (92.51.39.106)
+Host is up (0.072s latency).
+Not shown: 65528 closed tcp ports (reset)
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+135/tcp   filtered msrpc
+138/tcp   filtered netbios-dgm
+139/tcp   filtered netbios-ssn
+445/tcp   filtered microsoft-ds
+8050/tcp  open     unknown
+10050/tcp open     zabbix-agent
+
+# Nmap done at Thu Nov 13 10:54:15 2025 -- 1 IP address (1 host up) scanned in 107.43 seconds
