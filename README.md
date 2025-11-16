@@ -251,6 +251,10 @@ https://www.cvedetails.com/vulnerability-list/vendor_id-45/product_id-66/version
 обхода аутентификации и отказа в обслуживании.
 
 
+
+______________________________________________________________________________________
+
+
 #### Поиск уязвимостей для PHP 5.5.9
 
 ```
@@ -295,6 +299,10 @@ https://www.cvedetails.com/vulnerability-list/vendor_id-74/product_id-128/versio
 выполнения кода, чтения произвольных файлов и обхода механизмов безопасности.
 
 
+
+______________________________________________________________________________________
+
+
 #### Анализ уязвимостей Tornado 5.1.1
 
 ```
@@ -336,7 +344,29 @@ https://www.cvedetails.com/vulnerability-list/vendor_id-11965/product_id-22364/v
 до актуальной версии.
 
 
+______________________________________________________________________________________
+
+
 #### Анализ уязвимостей OpenSSH 8.2p1
+
+```
+https://www.cvedetails.com/version/639204/Openbsd-Openssh-8.2.html
+```
+<details>
+<summary> Скриншот </summary>
+
+![Изображение](./img/slide1_ssh_1.PNG)
+</details>
+
+```
+https://www.cvedetails.com/vulnerability-list/vendor_id-97/product_id-585/version_id-639204/Openbsd-Openssh-8.2.html?page=1&order=3
+```
+<details>
+<summary> Скриншот </summary>
+
+![Изображение](./img/slide1_ssh_2.PNG)
+</details>
+
 
 **Общая статистика:**
 - Всего обнаружено уязвимостей: 14
