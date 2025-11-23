@@ -644,5 +644,60 @@ sudo docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-ful
 ```
 
 Файл из отчета:
-[ZAP-8050](./docs/zap_report_8050.html)
+[Отчет ZAP 8050](https://htmlpreview.github.io/?https://github.com/AgvidoDev/sib-Diplom-Track-Penetration-Testing/blob/main/docs/zap_report_8050.html)
 
+#### Краткий отчет:
+Результаты:
+
+| Уровень риска | Предупреждений |
+|------|--------|
+| Высокий | 1 |
+| Средний | 6 |
+| Низкий | 9 |
+| Информационный | 9 |
+
+
+#### Детальный:
+Высокий риск:
+1 категория - Cross Site Scripting (DOM Based)
+Кол-во инстансов 9, критичность высокая
+
+
+Средний риск:
+6 категорий:
+- Absence of Anti-CSRF Tokens - 8 инстансов
+- Content Security Policy (CSP) Header Not Set - 11 инстансов
+- HTTP Only Site - 1 инстанс
+- Missing Anti-clickjacking Header - 11 инстансов
+- Relative Path Confusion - 6 инстансов
+- XSLT Injection - 2 инстанса
+
+Низкий риск:
+9 категорий:
+- Cookie No HttpOnly Flag - 2 инстанса
+- Cookie without SameSite Attribute - 2 инстанса
+- In Page Banner Information Leak - 5 инстансов
+- Insufficient Site Isolation Against Spectre Vulnerability - 9 инстансов
+- Permissions Policy Header Not Set - 11 инстансов
+- Server Leaks Information via "X-Powered-By" HTTP Header - 11 инстансов
+- Server Leaks Version Information via "Server" HTTP Header - 11 инстансов
+- Timestamp Disclosure - Unix - 5 инстансов
+- X-Content-Type-Options Header Missing - 11 инстансов
+
+Информационные:
+9 категорий
+- Authentication Request Identified - 1
+- Cookie Slack Detector - 42
+- GET for POST - 1
+- Information Disclosure - Sensitive Information in URL - 1
+- Non-Storable Content - 9
+- Session Management Response Identified - 2
+- Storable and Cacheable Content - 2
+- User Agent Fuzzer - 235
+- User Controllable HTML Element Attribute (Potential XSS) - 1
+
+
+#### Рекомендации:
+- Устранить DOM-based XSS уязвимости
+- Реализовать защиту от CSRF-атак
+- Настроить HTTPS и перенаправление с HTTP
