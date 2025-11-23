@@ -1,0 +1,245 @@
+PS C:\Users\Администратор> dcdiag
+
+Диагностика сервера каталогов
+
+Выполнение начальной настройки:
+   Выполняется попытка поиска основного сервера...
+   Основной сервер = WIN-GVE1L51E6SD
+   * Определен лес AD.
+   Сбор начальных данных завершен.
+
+Выполнение обязательных начальных проверок
+
+   Сервер проверки: Default-First-Site-Name\WIN-GVE1L51E6SD
+      Запуск проверки: Connectivity
+         ......................... WIN-GVE1L51E6SD - пройдена проверка Connectivity
+
+Выполнение основных проверок
+
+   Сервер проверки: Default-First-Site-Name\WIN-GVE1L51E6SD
+      Запуск проверки: Advertising
+         ......................... WIN-GVE1L51E6SD - пройдена проверка Advertising
+      Запуск проверки: FrsEvent
+         ......................... WIN-GVE1L51E6SD - пройдена проверка FrsEvent
+      Запуск проверки: DFSREvent
+         За последние 24 часа после предоставления SYSVOL в общий доступ зафиксированы предупреждения или сообщения  об
+         ошибках.  Сбои при репликации SYSVOL могут стать причиной проблем групповой политики.
+         ......................... WIN-GVE1L51E6SD - не пройдена проверка DFSREvent
+      Запуск проверки: SysVolCheck
+         ......................... WIN-GVE1L51E6SD - пройдена проверка SysVolCheck
+      Запуск проверки: KccEvent
+         ......................... WIN-GVE1L51E6SD - пройдена проверка KccEvent
+      Запуск проверки: KnowsOfRoleHolders
+         ......................... WIN-GVE1L51E6SD - пройдена проверка KnowsOfRoleHolders
+      Запуск проверки: MachineAccount
+         ......................... WIN-GVE1L51E6SD - пройдена проверка MachineAccount
+      Запуск проверки: NCSecDesc
+         ......................... WIN-GVE1L51E6SD - пройдена проверка NCSecDesc
+      Запуск проверки: NetLogons
+         ......................... WIN-GVE1L51E6SD - пройдена проверка NetLogons
+      Запуск проверки: ObjectsReplicated
+         ......................... WIN-GVE1L51E6SD - пройдена проверка ObjectsReplicated
+      Запуск проверки: Replications
+         ......................... WIN-GVE1L51E6SD - пройдена проверка Replications
+      Запуск проверки: RidManager
+         ......................... WIN-GVE1L51E6SD - пройдена проверка RidManager
+      Запуск проверки: Services
+         ......................... WIN-GVE1L51E6SD - пройдена проверка Services
+      Запуск проверки: SystemLog
+         ......................... WIN-GVE1L51E6SD - пройдена проверка SystemLog
+      Запуск проверки: VerifyReferences
+         ......................... WIN-GVE1L51E6SD - пройдена проверка VerifyReferences
+
+
+   Выполнение проверок разделов на: ForestDnsZones
+      Запуск проверки: CheckSDRefDom
+         ......................... ForestDnsZones - пройдена проверка CheckSDRefDom
+      Запуск проверки: CrossRefValidation
+         ......................... ForestDnsZones - пройдена проверка CrossRefValidation
+
+   Выполнение проверок разделов на: DomainDnsZones
+      Запуск проверки: CheckSDRefDom
+         ......................... DomainDnsZones - пройдена проверка CheckSDRefDom
+      Запуск проверки: CrossRefValidation
+         ......................... DomainDnsZones - пройдена проверка CrossRefValidation
+
+   Выполнение проверок разделов на: Schema
+      Запуск проверки: CheckSDRefDom
+         ......................... Schema - пройдена проверка CheckSDRefDom
+      Запуск проверки: CrossRefValidation
+         ......................... Schema - пройдена проверка CrossRefValidation
+
+   Выполнение проверок разделов на: Configuration
+      Запуск проверки: CheckSDRefDom
+         ......................... Configuration - пройдена проверка CheckSDRefDom
+      Запуск проверки: CrossRefValidation
+         ......................... Configuration - пройдена проверка CrossRefValidation
+
+   Выполнение проверок разделов на: gvido
+      Запуск проверки: CheckSDRefDom
+         ......................... gvido - пройдена проверка CheckSDRefDom
+      Запуск проверки: CrossRefValidation
+         ......................... gvido - пройдена проверка CrossRefValidation
+
+   Выполнение проверок предприятия на: gvido.local
+      Запуск проверки: LocatorCheck
+         ......................... gvido.local - пройдена проверка LocatorCheck
+      Запуск проверки: Intersite
+         ......................... gvido.local - пройдена проверка Intersite
+PS C:\Users\Администратор> dcdiag /test:DNS
+
+Диагностика сервера каталогов
+
+Выполнение начальной настройки:
+   Выполняется попытка поиска основного сервера...
+   Основной сервер = WIN-GVE1L51E6SD
+   * Определен лес AD.
+   Сбор начальных данных завершен.
+
+Выполнение обязательных начальных проверок
+
+   Сервер проверки: Default-First-Site-Name\WIN-GVE1L51E6SD
+      Запуск проверки: Connectivity
+         ......................... WIN-GVE1L51E6SD - пройдена проверка Connectivity
+
+Выполнение основных проверок
+
+   Сервер проверки: Default-First-Site-Name\WIN-GVE1L51E6SD
+
+      Запуск проверки: DNS
+
+         Проверки DNS выполняются без зависания. Подождите несколько минут...
+         ......................... WIN-GVE1L51E6SD - пройдена проверка DNS
+
+   Выполнение проверок разделов на: ForestDnsZones
+
+   Выполнение проверок разделов на: DomainDnsZones
+
+   Выполнение проверок разделов на: Schema
+
+   Выполнение проверок разделов на: Configuration
+
+   Выполнение проверок разделов на: gvido
+
+   Выполнение проверок предприятия на: gvido.local
+      Запуск проверки: DNS
+         Результаты проверки контроллеров домена:
+
+            Контроллер домена: WIN-GVE1L51E6SD.gvido.local
+            Домен: gvido.local
+
+
+               TEST: Basic (Basc)
+                  Внимание! У адаптера 08:00:27:E3:2D:DF динамический IP-адрес(возможна неправильная настройка)
+
+               TEST: Forwarders/Root hints (Forw)
+                  Ошибка. Все пересылки в списке пересылок недопустимы.
+                  Ошибка. Корневые ссылки и серверы пересылки не настроены или повреждены. Убедитесь, что хотя бы один из них работает.
+
+               TEST: Records registration (RReg)
+                  Сетевой адаптер [00000001] Intel(R) PRO/1000 MT Desktop Adapter:
+                     Внимание!
+                     Отсутствует запись A на DNS-сервере 169.254.95.212:
+                     WIN-GVE1L51E6SD.gvido.local
+
+                     Внимание!
+                     Отсутствует запись A на DNS-сервере 169.254.95.212:
+                     gc._msdcs.gvido.local
+
+               Внимание! Не удается найти регистрации записей для некоторых сетевых адаптеров
+
+         Отчет о результатах проверки DNS-серверов, используемых приведенными выше контроллерами домена:
+
+            DNS-сервер: 192.112.36.4 (G.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.112.36.4
+            DNS-сервер: 192.203.230.10 (E.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.203.230.10
+            DNS-сервер: 192.228.79.201 (B.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.228.79.201
+            DNS-сервер: 192.33.4.12 (C.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.33.4.12
+            DNS-сервер: 192.36.148.17 (I.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.36.148.17
+            DNS-сервер: 192.5.5.241 (F.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.5.5.241
+            DNS-сервер: 192.58.128.30 (J.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.58.128.30
+            DNS-сервер: 193.0.14.129 (K.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 193.0.14.129
+            DNS-сервер: 198.41.0.4 (A.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 198.41.0.4
+            DNS-сервер: 198.97.190.53 (H.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 198.97.190.53
+            DNS-сервер: 199.7.83.42 (L.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 199.7.83.42
+            DNS-сервер: 199.7.91.13 (D.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 199.7.91.13
+            DNS-сервер: 2001:500:1::53 (H.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:1::53
+            DNS-сервер: 2001:500:2::c (C.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:2::c
+            DNS-сервер: 2001:500:2d::d (D.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:2d::d
+            DNS-сервер: 2001:500:2f::f (F.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:2f::f
+            DNS-сервер: 2001:500:84::b (B.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:84::b
+            DNS-сервер: 2001:500:9f::42 (L.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:9f::42
+            DNS-сервер: 2001:503:ba3e::2:30 (A.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:503:ba3e::2:30
+            DNS-сервер: 2001:503:c27::2:30 (J.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:503:c27::2:30
+            DNS-сервер: 2001:7fd::1 (K.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:7fd::1
+            DNS-сервер: 2001:7fe::53 (I.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:7fe::53
+            DNS-сервер: 2001:dc3::35 (M.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:dc3::35
+            DNS-сервер: 202.12.27.33 (M.ROOT-SERVERS.NET.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 202.12.27.33
+            DNS-сервер: fd00::c55b:64f3:60c5:5fd4 (win-gve1l51e6sd.gvido.local.)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server fd00::c55b:64f3:60c5:5fd4
+            DNS-сервер: fec0:0:0:ffff::1 (<name unavailable>)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server fec0:0:0:ffff::1
+            DNS-сервер: fec0:0:0:ffff::2 (<name unavailable>)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server fec0:0:0:ffff::2
+            DNS-сервер: fec0:0:0:ffff::3 (<name unavailable>)
+               1 - проверка на данном DNS-сервере не пройдена
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server fec0:0:0:ffff::3
+         Отчет по результатам проверки DNS:
+
+                                            Auth Basc Forw Del  Dyn  RReg Ext
+            _________________________________________________________________
+            Домен: gvido.local
+               WIN-GVE1L51E6SD              PASS WARN FAIL PASS PASS WARN n/a
+
+         ......................... gvido.local - не пройдена проверка DNS
+PS C:\Users\Администратор>

