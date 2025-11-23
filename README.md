@@ -636,8 +636,8 @@ Nmap done: 1 IP address (1 host up) scanned in 168.04 seconds
 
 ![scrin_docker](./img/zap_docker.jpg)
 
-Отчеты:
-Сканирование порта 8050
+#### Отчеты:
+#### Сканирование порта 8050
 ```
 sudo docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t http://92.51.39.106:8050 -g gen.conf -r zap_report_8050.html
 
@@ -701,3 +701,70 @@ sudo docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-ful
 - Устранить DOM-based XSS уязвимости
 - Реализовать защиту от CSRF-атак
 - Настроить HTTPS и перенаправление с HTTP
+
+
+
+#### Сканирование порта 7788
+```
+sudo docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t http://92.51.39.106:7788 -g gen.conf -r zap_report_7788.html
+
+```
+
+Файл из отчета:
+[Отчет ZAP 7788](https://htmlpreview.github.io/?https://github.com/AgvidoDev/sib-Diplom-Track-Penetration-Testing/blob/main/docs/zap_report_7788.html)
+
+#### Краткий отчет:
+Результаты:
+
+| Уровень риска | Предупреждений |
+|------|--------|
+| Высокий | 6 |
+| Средний | 7 |
+| Низкий | 5 |
+| Информационный | 7 |
+
+Высокий риск:
+6 категорий:
+- Cross Site Scripting (DOM Based) - 1 инстанс
+- Cross Site Scripting (Reflected) - 1 инстанс
+- Path Traversal - 1 инстанс
+- Remote OS Command Injection - 1 инстанс
+- Remote OS Command Injection (Time Based) - 2 инстанса
+- SQL Injection - 2 инстанса
+
+Средний риск:
+7 категорий:
+- Absence of Anti-CSRF Tokens - 7 инстансов
+- Anti-CSRF Tokens Check - 4 инстанса
+- Content Security Policy (CSP) Header Not Set - 11 инстансов
+- HTTP Only Site - 1 инстанс
+- Integer Overflow Error - 1 инстанс
+- Missing Anti-clickjacking Header - 11 инстансов
+- Vulnerable JS Library - 2 инстанса
+
+Низкий риск:
+5 категорий:
+- Application Error Disclosure - 1 инстанс
+- Insufficient Site Isolation Against Spectre Vulnerability - 9 инстансов
+- Permissions Policy Header Not Set - 11 инстансов
+- Server Leaks Version Information via "Server" HTTP Header - 11 инстансов
+- X-Content-Type-Options Header Missing - 11 инстансов
+
+Информационные:
+7 категорий:
+- Authentication Request Identified - 1
+- GET for POST - 1
+- Information Disclosure - Suspicious Comments - 2
+- Modern Web Application - 11
+- Storable and Cacheable Content - 11
+- User Agent Fuzzer - 12
+- User Controllable HTML Element Attribute (Potential XSS) - 6
+
+#### Рекомендации:
+- Устранить SQL Injection уязвимости
+- Устранить уязвимость Remote OS Command Injection
+- Исправить Path Traversal
+- Устранить XSS уязвимости
+- Обновить уязвимые JS библиотеки
+- Реализовать CSRF защиту
+- Настроить все необходимые заголовки безопасности
