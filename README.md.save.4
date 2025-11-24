@@ -793,7 +793,7 @@ Password > 1111
 
 #### Тестирование уязвимостей Cross-Site Scripting (XSS).
 
-####DOM-based XSS в гостевой книге:
+#### DOM-based XSS в гостевой книге:
 - Страница входа http://92.51.39.106:8050/guestbook.php
 - В поле комментария вводим:
 ```
@@ -805,10 +805,9 @@ Password > 1111
 ![XSS DOM-Based](./img/test_comm_02.jpg)
 
 
-
 #### Reflected XSS в форме поиска:
 - Любая страница, строка поиска http://92.51.39.106:8050/
-- В поле поиска вводим код
+- В поле поиска вводим код 
 ```
 <a href="#" onclick="alert('XSS Reflected')">Netology</a>
 ```
@@ -842,70 +841,10 @@ if (isset($_REQUEST['cmd'])) {
 ?>
 ```
 
-Проверяем результат:
-```
-http://92.51.39.106:8050/upload/111/shell.php?cmd=cat+/etc/passwd
-```
-
-Результат:
-![File Inclusion](./img/test_shell_01.jpg)
-![File Inclusion](./img/test_shell_02.jpg)
-![File Inclusion](./img/test_shell_03.jpg)
-![File Inclusion](./img/test_shell_04.jpg)
-![File Inclusion](./img/test_shell_05.jpg)
-![File Inclusion](./img/test_shell_06.jpg)
-
-
-### Тестирование веб-приложения Beemers (92.51.39.106:7788)
-
-#### Эксплуатация SQL Injection
-
-- Страница входа http://92.51.39.106:7788/login.html
-```
-Username > admin' or '1'='1--
-Passwors > 123 (любой)
-
-```
-
-
-Результат:
-![SQL Injection](./img/test_7788_sql_01.jpg)
-![SQL Injection](./img/test_7788_sql_02.jpg)
-
-#### Подтверждение уязвимостей XSS, найденных ZAP
- 
-#### DOM-based XSS:
-- Переходим по сгенерированной ссылке 92.51.39.106:7788/search?q=<script>alert(1)</script>
-
-
-Результат:
-![DOM-based XSS](./img/test_7788_dom_xss_01.jpg)
-
-
-#### Reflected XSS:
--  Проверка через поисковую форму сайта 
-
-Результат:
-![Reflected XSS](./img/test_7788_xss_01.jpg)
-![Reflected XSS](./img/test_7788_xss_02.jpg)
-
-
-#### Верификация уязвимости Path Traversal.
-- Переходим  по сгенерированной ZAP ссылке http://92.51.39.106:7788/read?file=../../../../../../../../../../../../../../etc/passwd
-
-
-Результат:
-![Path Traversal](./img/test_7788_path_01.jpg)
-
-####. Подтверждение уязвимости Remote OS Command Injection.
-
-- Переходим на страницу http://92.51.39.106:7788/server.html.
-
-Результат:
-![Remote OS Command Injection](./img/test_7788_server_01.jpg)
-![Remote OS Command Injection](./img/test_7788_server_02.jpg)
-
-
-## Заключение
-
-
+* Создать файл shell.php с кодом, выполняющим системные команды (например, с использованием shell_exec и HTML-формы для ввода).
+* Эксплуатация:
+* Загрузить shell.php на сервер.
+* Найти путь к загруженному файлу через интерфейс приложения (например, в /upload/PHP/).
+* Перейти по прямой ссылке на файл и убедиться в его исполнении.
+* Ввести команду cat /etc/passwd в форму шелла и получить содержимое системного файла.
+* Доказательство: Скриншоты успешной загрузки файла, интерфейса веб-шелла и результата выполнения команды.
